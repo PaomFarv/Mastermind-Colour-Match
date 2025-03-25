@@ -51,6 +51,8 @@ def mastermind():
     global attempts,score
     while attempts > 0:
         print(f"Your Score: {score}")
+        print("Computer picked colours: [?] [?] [?] [?]")
+
         user_guess = input(Fore.YELLOW+"\nEnter your guess here (spaces in between): ").strip().upper()
         user_pick = user_guess.split(" ")
 
