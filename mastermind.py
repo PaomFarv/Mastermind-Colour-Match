@@ -1,6 +1,10 @@
 import random
 from colorama import Fore
-import os
+import time,pyttsx3
+
+engine = pyttsx3.init()
+voices = engine.getProperty('voices')  
+engine.setProperty('voice', voices[1].id) 
 
 colors = ["R","G","B","Y","O","P","C"]
 
@@ -11,37 +15,42 @@ for i in range(4):
 #print(comp_pick) for hint purpose.
 score = 0
 
+user_ans = input("Do you want voice overs of the instructions ? (y/n) ").strip().upper()
+
+
+if user_ans == "Y":
+    engine.say("Welcome to Mastermind Colour Match. You have to guess 4 colours using their first letters separated by spaces. "
+    "Here are all the colours used in this game: 'R' (Red),'G' (Green),'B' (Blue),'Y' (Yellow),'O' (Orange),'P' (Purple),'C' (Cyan). "
+    "You have 10 attempts to guess the correct colours in the correct order. Here are the Symbols used to represent the following scenarios.")
+
+    engine.runAndWait()
+
+elif user_ans == "N":
+    pass 
+
+else:
+    print("Invalid response. Please try again.")
+    quit()
+
 print()
 print(Fore.LIGHTRED_EX + "^"*170)
 print(Fore.LIGHTGREEN_EX + "Welcome to Mastermind Colour Match.")
-os.system('powershell -Command "Add-Type –AssemblyName System.Speech; '
-          '$speak = New-Object System.Speech.Synthesis.SpeechSynthesizer; '
-          '$speak.Speak(\'Welcome to Mastermind Colour Match.\');"')
 
-input("Press ENTER to continue...")
+
+time.sleep(1)
 print(Fore.LIGHTBLUE_EX +"\nYou have to guess 4 colours using their first letters separated by spaces.")
-os.system('powershell -Command "Add-Type –AssemblyName System.Speech; '
-          '$speak = New-Object System.Speech.Synthesis.SpeechSynthesizer; '
-          '$speak.Speak(\'You have to guess 4 colours using their first letters separated by spaces.\');"')
-
-input("Press ENTER to continue...")
+ 
+time.sleep(1.5)
 print("\nHere are all the colours used in this game: 'R' (Red),'G' (Green),'B' (Blue),'Y' (Yellow),'O' (Orange),'P' (Purple),'C' (Cyan).")
-os.system('powershell -Command "Add-Type –AssemblyName System.Speech; '
-          '$speak = New-Object System.Speech.Synthesis.SpeechSynthesizer; '
-          '$speak.Speak(\'Here are all the colours used in this game:\');"')
-
-input("Press ENTER to continue...")
+ 
+time.sleep(1.5)
 print("\nYou have 10 attempts to guess the correct colours in the correct order.")
-os.system('powershell -Command "Add-Type –AssemblyName System.Speech; '
-          '$speak = New-Object System.Speech.Synthesis.SpeechSynthesizer; '
-          '$speak.Speak(\'You have 10 attempts to guess the correct colours in the correct order.\');"')
+ 
 
-input("Press ENTER to continue...")
+time.sleep(1.5)
 print("\nSymbols used to represent -\n'✅ ' denotes correct position, '⚠️ ' correct guess but wrong position, '❌ ' wrong guess.")
-os.system('powershell -Command "Add-Type –AssemblyName System.Speech; '
-          '$speak = New-Object System.Speech.Synthesis.SpeechSynthesizer; '
-          '$speak.Speak(\'Symbols used to represent -\');"')
 
+time.sleep(1.5)
 
 print(Fore.LIGHTRED_EX + "^"*170)
 
